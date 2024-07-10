@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         'plt-primary': '#1d1e22',
         'plt-secondary': '#243139',
-        'plt-white': '#d2d3d5',
+        'plt-white': '#F9F9F9',
       },
     },
     screens: {
@@ -23,13 +23,17 @@ const config: Config = {
 
       lg: { max: '1023px' },
 
-      '2md': { max: '940px' },
+      '3md': { max: '940px' },
+
+      '2md': { max: '850px' },
 
       md: { max: '767px' },
 
       sm: { max: '639px' },
 
       xs: { max: '450px' },
+
+      xxs: { max: '400px' },
     },
   },
   plugins: [],

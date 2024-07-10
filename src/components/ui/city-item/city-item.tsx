@@ -28,7 +28,7 @@ export const CityItem = ({ city, onDelete, onclick }: CityItemProps) => {
         }
       }}
       className={cn(
-        'flex items-center gap-2 w-fit p-2 rounded-xl text-sm cursor-pointer',
+        'flex items-center gap-2 w-fit p-2 rounded-xl text-sm cursor-pointer text-plt-white',
         [
           currentCity.lat === city.lat && currentCity.lon === city.lon
             ? 'bg-blue-500/20'

@@ -37,7 +37,7 @@ export const CurrentLocation = () => {
 
   return (
     <React.Fragment>
-      <ButtonMenu onClick={handleGetGeoClick} classNames="pl-5">
+      <ButtonMenu onClick={handleGetGeoClick} classNames="px-5 text-plt-white">
         <IconLocation />
         Моя геопозиция
       </ButtonMenu>

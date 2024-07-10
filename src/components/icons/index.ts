@@ -10,3 +10,4 @@ export * from './icon-eye';
 export * from './icon-plus';
 export * from './icon-search';
 export * from './icon-loading';
+export * from './icon-arrow';

@@ -44,13 +44,13 @@ export const ForecastItem = ({ day }: ForecastItemProps) => {
   return (
     <div>
       <div className="grid">
-        <p className="text-sm opacity-60 font-medium mx-auto">
+        <p className="text-sm opacity-60 font-medium mx-auto text-plt-white">
           {weekDaysNames[date.getDay()]}
         </p>
-        <p className="text-sm opacity-60 font-thin mx-auto">
+        <p className="text-sm opacity-60 font-thin mx-auto text-plt-white">
           {date.getDate()} {monthNames[date.getMonth()]}
         </p>
-        <div className="flex items-end mt-3 text-3xl mx-auto">
+        <div className="flex items-end mt-3 text-3xl mx-auto text-plt-white">
           <p>{Math.round(day.main.temp)}&#176;</p>
         </div>
         <div className="max-w-[100px] max-h-[100px] mt-3 mx-auto sm:max-w-none sm:max-h-none">

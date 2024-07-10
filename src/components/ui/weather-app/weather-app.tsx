@@ -52,10 +52,10 @@ export const WeatherApp = () => {
 
   return (
     <div className="max-h-screen h-full">
-      <div className="pt-5 grid grid-cols-[1fr_4fr] gap-5 md:grid-cols-1">
+      <div className="py-5 grid grid-cols-[1fr_4fr] gap-5 md:grid-cols-1">
         <Menu />
         <div className="grid gap-5">
-          <div className="grid grid-cols-[1fr_2fr] gap-5 2md:grid-cols-1">
+          <div className="grid grid-cols-[1fr_2fr] gap-5 3md:grid-cols-1">
             {!isWeatherLoading ? (
               <WeatherInfo currentWeather={currentWeather!} />
             ) : (
@@ -95,7 +95,7 @@ export const WeatherApp = () => {
             )}
           </div>
           <div className="grid grid-cols-1 gap-5">
-            <p>Прогноз погоды на 5 дней</p>
+            <p className="text-plt-white">Прогноз погоды на 5 дней</p>
             {!isForecastLoading ? (
               <Forecast forecast={currentForecast} />
             ) : (

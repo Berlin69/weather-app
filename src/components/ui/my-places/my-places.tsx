@@ -1,6 +1,6 @@
 'use client';
 
-import { IconMap, IconPlus } from '@/components/icons';
+import { IconArrow, IconMap, IconPlus } from '@/components/icons';
 import { ButtonMenu } from '@/components/primitives/menu-button';
 import cn from 'clsx';
 import { useState } from 'react';
@@ -32,11 +32,20 @@ const MyPlaces = () => {
   };
 
   return (
-    <div className={cn('relative pl-5')}>
+    <div className={cn('relative px-5')}>
       <div className="">
-        <ButtonMenu onClick={() => setOpen(!isOpen)} classNames="outline-none">
+        <ButtonMenu
+          onClick={() => setOpen(!isOpen)}
+          classNames="outline-none text-plt-white"
+        >
           <IconMap />
           Мои места
+          <IconArrow
+            size={18}
+            className={cn('transition-all', [
+              isOpen ? 'rotate-180' : 'rotate-0',
+            ])}
+          />
         </ButtonMenu>
         <div
           className={cn('grid grid-rows-[0fr] transition-all', [
@@ -56,7 +65,7 @@ const MyPlaces = () => {
             </ul>
             <button
               onClick={() => setModalOpen(true)}
-              className="flex items-center gap-2 text-sm mt-2 text-blue-500 hover:opacity-80"
+              className="flex items-center gap-2 text-sm mt-2 text-blue-500 outline-none hover:opacity-80"
             >
               <IconPlus size={16} />
               Добавить место

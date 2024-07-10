@@ -6,7 +6,7 @@ export const DateWithIcon = () => {
   const date = new Date();
 
   return (
-    <div className="flex gap-2 items-center font-light text-sm opacity-60">
+    <div className="flex gap-2 items-center font-light text-sm opacity-60 text-plt-white">
       <IconCalendar size={20} />
       <p className="font-light">
         {date.getDate()} {monthNames[date.getMonth()]} {date.getFullYear()},{' '}

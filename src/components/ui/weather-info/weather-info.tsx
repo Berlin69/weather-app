@@ -67,10 +67,12 @@ export const WeatherInfo = ({ currentWeather }: currentWeather) => {
         )}
 
         <div className="flex gap-1 text-5xl mt-3">
-          <p>{Math.round(currentWeather?.main?.temp)}</p>
-          <span>&#176;C</span>
+          <p className="text-plt-white">
+            {Math.round(currentWeather?.main?.temp)}
+          </p>
+          <span className="text-plt-white">&#176;C</span>
         </div>
-        <div className="flex gap-2 items-center py-5">
+        <div className="flex gap-2 items-center py-5 text-plt-white">
           <IconSun />
           <p className="font-light">
             {currentWeather?.weather[0]?.description?.charAt(0).toUpperCase() +
@@ -79,14 +81,14 @@ export const WeatherInfo = ({ currentWeather }: currentWeather) => {
         </div>
         <button
           onClick={handleOpenClick}
-          className="absolute flex items-center justify-center w-16 h-16 rounded-full bg-plt-primary top-0 right-0"
+          className="absolute flex items-center justify-center w-16 h-16 rounded-full bg-plt-primary top-0 right-0 text-plt-white"
         >
           <IconSearch size={28} />
         </button>
         {isOpen && <SearchModal close={handleCloseClick} />}
       </div>
       <div className="grid gap-3 pt-5 ">
-        <div className="flex gap-2 items-center font-light text-sm opacity-60">
+        <div className="flex gap-2 items-center font-light text-sm opacity-60 text-plt-white">
           <IconLocation size={20} />
           <p>{currentWeather?.name}</p>
         </div>
