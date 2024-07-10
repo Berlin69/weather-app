@@ -13,7 +13,6 @@ export const CurrentLocation = () => {
     if (isPending) {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(({ coords }) => {
-          console.log(coords);
           const { latitude, longitude } = coords;
           // setLocation({ latitude, longitude });
           const newCity = {
