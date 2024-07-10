@@ -7,7 +7,7 @@ export const getCity = (
   loading: (boolean: boolean) => void
 ) => {
   axios
-    .get('http://api.openweathermap.org/geo/1.0/direct', {
+    .get('https://api.openweathermap.org/geo/1.0/direct', {
       params: {
         q: searchValue,
         limit: 5,
