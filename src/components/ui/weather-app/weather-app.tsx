@@ -3,32 +3,58 @@
 import { Skeleton } from '@/components/primitives/skeleton';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Forecast } from '../forecast';
 import { Menu } from '../menu';
 import { CurrentWeatherItem, WeatherInfo } from '../weather-info';
 import { WeatherMoreInfo } from '../weather-more-info';
+import { changeCity } from '@/lib/store/slices/citySlise';
 
 export const WeatherApp = () => {
   const selectedCity = useSelector((state: any) => state.city);
   const [currentWeather, setCurrentWeather] = useState<CurrentWeatherItem>();
   const [currentForecast, setCurrentForecast] = useState([]);
+  const [isInitializeLoading, setInitializeLoading] = useState<boolean>(true);
 
   // loading states
   const [isWeatherLoading, setWeatherLoading] = useState(true);
   const [isForecastLoading, setForecastLoading] = useState(true);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isInitializeLoading) {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(({ coords }) => {
+          console.log(coords);
+          const { latitude, longitude } = coords;
+          // setLocation({ latitude, longitude });
+          const newCity = {
+            name: '',
+            lat: latitude,
+            lon: longitude,
+          };
+
+          dispatch(changeCity(newCity));
+          setInitializeLoading(false);
+        });
+      }
+    }
+  }, []);
+
   useEffect(() => {
     setWeatherLoading(true);
     async function getCurrentWeather(lat: string, lon: string) {
-      try {
-        const weather = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?appid=ff7605e146b518b4a56cba4de1293c21&lat=${lat}&lon=${lon}&units=metric&lang=ru`
-        );
-        setCurrentWeather(weather.data);
-        setWeatherLoading(false);
-      } catch (error) {
-        console.error(error);
+      if (!isInitializeLoading) {
+        try {
+          const weather = await axios.get(
+            `https://api.openweathermap.org/data/2.5/weather?appid=ff7605e146b518b4a56cba4de1293c21&lat=${lat}&lon=${lon}&units=metric&lang=ru`
+          );
+          setCurrentWeather(weather.data);
+          setWeatherLoading(false);
+        } catch (error) {
+          console.error(error);
+        }
       }
     }
     selectedCity && getCurrentWeather(selectedCity.lat, selectedCity.lon);

@@ -1,17 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: any = [
-  {
-    name: 'Санкт-Петербург',
-    lat: '59.934280',
-    lon: '30.335098',
-  },
-  {
-    name: 'Москва',
-    lat: '55.755825',
-    lon: '37.617298',
-  },
-];
+const initialState: any = [];
 
 const citiesSlice = createSlice({
   name: 'cities',
@@ -25,8 +14,11 @@ const citiesSlice = createSlice({
       const cityName = action.payload;
       return state.filter((city: any) => city.name !== cityName);
     },
+    setCities: (state, action: PayloadAction<any>) => {
+      return action.payload;
+    },
   },
 });
 
-export const { addCity, deleteCity } = citiesSlice.actions;
+export const { addCity, deleteCity, setCities } = citiesSlice.actions;
 export default citiesSlice.reducer;

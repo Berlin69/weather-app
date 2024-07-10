@@ -3,9 +3,9 @@
 import { IconArrow, IconMap, IconPlus } from '@/components/icons';
 import { ButtonMenu } from '@/components/primitives/menu-button';
 import cn from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { deleteCity } from '@/lib/store/slices/citiesSlice';
+import { addCity, deleteCity, setCities } from '@/lib/store/slices/citiesSlice';
 import { changeCity } from '@/lib/store/slices/citySlise';
 import { useDispatch, useSelector } from 'react-redux';
 import { CityItem } from '../city-item';
@@ -14,10 +14,25 @@ import { SearchModal } from '../search-modal';
 const MyPlaces = () => {
   const [isOpen, setOpen] = useState(true);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isInitializeLoading, setInitializeLoading] = useState(true);
+  const cities = useSelector((state: any) => state.cities);
 
   const dispatch = useDispatch();
 
-  const cities = useSelector((state: any) => state.cities);
+  useEffect(() => {
+    if (isInitializeLoading) {
+      if (localStorage.getItem('cities')!.length > 0) {
+        const citiesArray = localStorage.getItem('cities');
+        if (citiesArray) {
+          const parsedCitiesArray = JSON.parse(citiesArray);
+          dispatch(setCities(parsedCitiesArray));
+          setInitializeLoading(false);
+        }
+      }
+    } else {
+      localStorage.setItem('cities', JSON.stringify(cities));
+    }
+  }, [cities]);
 
   const handleRemoveCity = (cityName: string) => {
     dispatch(deleteCity(cityName));
@@ -30,6 +45,14 @@ const MyPlaces = () => {
   const handleChangeCity = (city: CityItem) => {
     dispatch(changeCity(city));
   };
+
+  // useEffect(() => {
+  //   const citiesArray = localStorage.getItem('cities');
+  //   if (citiesArray) {
+  //     const parsedCitiesArray = JSON.parse(citiesArray);
+  //   }
+  //   localStorage.setItem('cities', JSON.stringify(cities));
+  // }, [cities]);
 
   return (
     <div className={cn('relative px-5')}>

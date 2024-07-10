@@ -77,7 +77,7 @@ export const SearchModal = ({ close }: SearchModalProps) => {
                 className="w-full bg-plt-primary p-2 my-3 rounded-lg outline-none"
               />
               {searchQuery && (
-                <div className="absolute top-28 left-3 right-3 z-30 bg-plt-primary rounded-lg p-3 grid gap-3">
+                <div className="absolute top-[120px] left-3 right-3 z-30 bg-plt-primary rounded-lg p-3 grid gap-3 mx-3">
                   {!isLoading ? (
                     searchResult.length > 1 ? (
                       searchResult?.map((item, index) => (
