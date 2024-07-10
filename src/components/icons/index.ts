@@ -9,3 +9,4 @@ export * from './icon-thermometer';
 export * from './icon-eye';
 export * from './icon-plus';
 export * from './icon-search';
+export * from './icon-loading';

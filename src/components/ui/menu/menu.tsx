@@ -13,10 +13,10 @@ export const Menu = () => {
         </div>
         <div className="mt-10 grid gap-5">
           <MyPlaces />
-          {/* <ButtonMenu>
+          <ButtonMenu classNames="pl-5">
             <IconLocation />
             Моя геопозиция
-          </ButtonMenu> */}
+          </ButtonMenu>
           <div></div>
         </div>
       </div>

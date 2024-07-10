@@ -51,11 +51,6 @@ export const WeatherApp = () => {
     selectedCity && getCurrentForecast(selectedCity.lat, selectedCity.lon);
   }, [selectedCity]);
 
-  useEffect(() => {
-    console.log('currentWeather', currentWeather);
-    console.log('currentForecast', currentForecast);
-  }, [currentWeather, currentForecast]);
-
   return (
     <div className="max-h-screen h-full">
       <div className="pt-5 grid grid-cols-[1fr_4fr] gap-5">

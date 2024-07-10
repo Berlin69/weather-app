@@ -6,13 +6,13 @@ import cn from 'clsx';
 import { useState } from 'react';
 
 import { deleteCity } from '@/lib/store/slices/citiesSlice';
+import { changeCity } from '@/lib/store/slices/citySlise';
 import { useDispatch, useSelector } from 'react-redux';
 import { CityItem } from '../city-item';
-import { Modal } from '../modal';
-import { changeCity } from '@/lib/store/slices/citySlise';
+import { SearchModal } from '../search-modal';
 
 const MyPlaces = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(true);
   const [isModalOpen, setModalOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -31,10 +31,8 @@ const MyPlaces = () => {
     dispatch(changeCity(city));
   };
 
-  // console.log(cities);
-
   return (
-    <div className={cn('relative pl-10')}>
+    <div className={cn('relative pl-5')}>
       <div className="">
         <ButtonMenu onClick={() => setOpen(!isOpen)} classNames="outline-none">
           <IconMap />
@@ -46,7 +44,7 @@ const MyPlaces = () => {
           ])}
         >
           <div className="overflow-hidden">
-            <ul className="overflow-hidden mt-3 grid gap-1">
+            <ul className="overflow-hidden mt-3 flex flex-wrap gap-1">
               {cities.map((city: CityItem, index: number) => (
                 <CityItem
                   key={index}
@@ -66,7 +64,7 @@ const MyPlaces = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && <Modal onClose={handleCloseClick} />}
+      {isModalOpen && <SearchModal close={handleCloseClick} />}
     </div>
   );
 };
