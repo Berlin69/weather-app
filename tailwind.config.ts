@@ -13,11 +13,23 @@ const config: Config = {
         'plt-secondary': '#243139',
         'plt-white': '#d2d3d5',
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+    },
+    screens: {
+      '2xl': { max: '1535px' },
+
+      xl: { max: '1279px' },
+
+      '2lg': { max: '1170px' },
+
+      lg: { max: '1023px' },
+
+      '2md': { max: '940px' },
+
+      md: { max: '767px' },
+
+      sm: { max: '639px' },
+
+      xs: { max: '450px' },
     },
   },
   plugins: [],

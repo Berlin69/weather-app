@@ -49,7 +49,7 @@ export const WeatherMoreInfo = ({ currentWeather }: WeatherMoreInfoProps) => {
     <Card className="bg-gradient-to-b from-plt-primary to-plt-secondary">
       <div>
         <p className="text-sm">Подробнее о погоде</p>
-        <div className="grid grid-cols-3 gap-5 pt-5">
+        <div className="grid grid-cols-3 gap-5 pt-5 2lg:grid-cols-2 xs:grid-c">
           <Card className="bg-plt-primary text-sm" rounded="md" padding="small">
             <div>
               <p className="opacity-80">Ветер</p>

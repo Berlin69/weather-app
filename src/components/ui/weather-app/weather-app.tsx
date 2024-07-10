@@ -1,14 +1,13 @@
 'use client';
 
+import { Skeleton } from '@/components/primitives/skeleton';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Card } from '../card';
 import { Forecast } from '../forecast';
 import { Menu } from '../menu';
 import { CurrentWeatherItem, WeatherInfo } from '../weather-info';
 import { WeatherMoreInfo } from '../weather-more-info';
-import { Skeleton } from '@/components/primitives/skeleton';
 
 export const WeatherApp = () => {
   const selectedCity = useSelector((state: any) => state.city);
@@ -53,10 +52,10 @@ export const WeatherApp = () => {
 
   return (
     <div className="max-h-screen h-full">
-      <div className="pt-5 grid grid-cols-[1fr_4fr] gap-5">
+      <div className="pt-5 grid grid-cols-[1fr_4fr] gap-5 md:grid-cols-1">
         <Menu />
         <div className="grid gap-5">
-          <div className="grid grid-cols-[1fr_2fr] gap-5">
+          <div className="grid grid-cols-[1fr_2fr] gap-5 2md:grid-cols-1">
             {!isWeatherLoading ? (
               <WeatherInfo currentWeather={currentWeather!} />
             ) : (

@@ -9,7 +9,7 @@ export const Forecast = ({ forecast }: any) => {
   return (
     <div>
       <Card className="bg-gradient-to-b from-plt-primary to-plt-secondary">
-        <div className="flex justify-between gap-2">
+        <div className="flex justify-between gap-2 sm:grid sm:grid-cols-2 sm:gap-10 xs:grid-cols-1">
           {filteredList?.map((day: ForecastItem, index: number) => (
             <ForecastItem key={index} day={day} />
           ))}

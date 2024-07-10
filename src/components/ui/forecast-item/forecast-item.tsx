@@ -53,7 +53,7 @@ export const ForecastItem = ({ day }: ForecastItemProps) => {
         <div className="flex items-end mt-3 text-3xl mx-auto">
           <p>{Math.round(day.main.temp)}&#176;</p>
         </div>
-        <div className="max-w-[100px] max-h-[100px] mt-3 mx-auto">
+        <div className="max-w-[100px] max-h-[100px] mt-3 mx-auto sm:max-w-none sm:max-h-none">
           <Image
             src={iconsLib[day?.weather[0]?.icon]}
             alt="weather image"
