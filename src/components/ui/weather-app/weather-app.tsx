@@ -8,27 +8,29 @@ import { Forecast } from '../forecast';
 import { Menu } from '../menu';
 import { CurrentWeatherItem, WeatherInfo } from '../weather-info';
 import { WeatherMoreInfo } from '../weather-more-info';
-import { changeCity } from '@/lib/store/slices/citySlise';
+import { changeCity } from '@/lib/store/slices/city-slice';
+import { appid, routes } from '@/lib/api/constants';
 
 export const WeatherApp = () => {
   const selectedCity = useSelector((state: any) => state.city);
+  const currentUnit = useSelector((state: any) => state.unit);
+
   const [currentWeather, setCurrentWeather] = useState<CurrentWeatherItem>();
   const [currentForecast, setCurrentForecast] = useState([]);
   const [isInitializeLoading, setInitializeLoading] = useState<boolean>(true);
 
-  // loading states
+  // индикаторы загрузки
   const [isWeatherLoading, setWeatherLoading] = useState(true);
   const [isForecastLoading, setForecastLoading] = useState(true);
 
   const dispatch = useDispatch();
 
+  // Получаем геолокацию пользователя
   useEffect(() => {
     if (isInitializeLoading) {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(({ coords }) => {
-          console.log(coords);
           const { latitude, longitude } = coords;
-          // setLocation({ latitude, longitude });
           const newCity = {
             name: '',
             lat: latitude,
@@ -47,9 +49,15 @@ export const WeatherApp = () => {
     async function getCurrentWeather(lat: string, lon: string) {
       if (!isInitializeLoading) {
         try {
-          const weather = await axios.get(
-            `https://api.openweathermap.org/data/2.5/weather?appid=ff7605e146b518b4a56cba4de1293c21&lat=${lat}&lon=${lon}&units=metric&lang=ru`
-          );
+          const weather = await axios.get(routes.weather, {
+            params: {
+              appid: appid,
+              lat: lat,
+              lon: lon,
+              units: currentUnit.unit,
+              lang: 'ru',
+            },
+          });
           setCurrentWeather(weather.data);
           setWeatherLoading(false);
         } catch (error) {
@@ -58,15 +66,21 @@ export const WeatherApp = () => {
       }
     }
     selectedCity && getCurrentWeather(selectedCity.lat, selectedCity.lon);
-  }, [selectedCity]);
+  }, [selectedCity, currentUnit]);
 
   useEffect(() => {
     setForecastLoading(true);
     async function getCurrentForecast(lat: string, lon: string) {
       try {
-        const forecast = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=ff7605e146b518b4a56cba4de1293c21&units=metric&lang=ru`
-        );
+        const forecast = await axios.get(routes.forecast, {
+          params: {
+            appid,
+            lat,
+            lon,
+            units: currentUnit.unit,
+            lang: 'ru',
+          },
+        });
         setCurrentForecast(forecast.data);
         setForecastLoading(false);
       } catch (error) {
@@ -74,7 +88,7 @@ export const WeatherApp = () => {
       }
     }
     selectedCity && getCurrentForecast(selectedCity.lat, selectedCity.lon);
-  }, [selectedCity]);
+  }, [selectedCity, currentUnit]);
 
   return (
     <div className="max-h-screen h-full">
@@ -104,7 +118,7 @@ export const WeatherApp = () => {
                 </div>
               </Skeleton>
             )}
-            {!isForecastLoading ? (
+            {!isWeatherLoading ? (
               <WeatherMoreInfo currentWeather={currentWeather!} />
             ) : (
               <Skeleton className="h-[327px] p-5">

@@ -1,7 +1,7 @@
 'use client';
 
-import { addCity } from '@/lib/store/slices/citiesSlice';
-import { changeCity } from '@/lib/store/slices/citySlise';
+import { addCity } from '@/lib/store/slices/cities-slice';
+import { changeCity } from '@/lib/store/slices/city-slice';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 

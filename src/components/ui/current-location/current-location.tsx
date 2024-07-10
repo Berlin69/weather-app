@@ -2,7 +2,7 @@
 
 import { IconLocation } from '@/components/icons';
 import { ButtonMenu } from '@/components/primitives/menu-button';
-import { changeCity } from '@/lib/store/slices/citySlise';
+import { changeCity } from '@/lib/store/slices/city-slice';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 

@@ -7,6 +7,7 @@ import { IconSun, IconLocation, IconSearch } from '@/components/icons';
 import { DateWithIcon } from '../date-with-icon';
 import { iconsLib } from '@/lib/data/icons-lib';
 import { SearchModal } from '../search-modal';
+import { useSelector } from 'react-redux';
 
 interface currentWeather {
   currentWeather: CurrentWeatherItem;
@@ -44,6 +45,7 @@ export interface CurrentWeatherItem {
 }
 
 export const WeatherInfo = ({ currentWeather }: currentWeather) => {
+  const currentUnit = useSelector((state: any) => state.unit);
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const handleOpenClick = () => {
@@ -70,7 +72,11 @@ export const WeatherInfo = ({ currentWeather }: currentWeather) => {
           <p className="text-plt-white">
             {Math.round(currentWeather?.main?.temp)}
           </p>
-          <span className="text-plt-white">&#176;C</span>
+          <span className="text-plt-white">
+            &#176;{currentUnit.unit === 'metric' && 'C'}
+            {currentUnit.unit === 'standart' && 'K'}
+            {currentUnit.unit === 'imperial' && 'F'}
+          </span>
         </div>
         <div className="flex gap-2 items-center py-5 text-plt-white">
           <IconSun />

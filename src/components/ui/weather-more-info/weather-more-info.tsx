@@ -8,6 +8,7 @@ import {
   IconEye,
 } from '@/components/icons';
 import { IconPressure } from '@/components/icons/icon-pressure';
+import { useSelector } from 'react-redux';
 
 interface WeatherMoreInfoProps {
   currentWeather: CurrentWeatherItem;
@@ -45,6 +46,8 @@ interface CurrentWeatherItem {
 }
 
 export const WeatherMoreInfo = ({ currentWeather }: WeatherMoreInfoProps) => {
+  const currentUnit = useSelector((state: any) => state.unit);
+
   return (
     <Card className="bg-gradient-to-b from-plt-primary to-plt-secondary">
       <div>
@@ -92,7 +95,12 @@ export const WeatherMoreInfo = ({ currentWeather }: WeatherMoreInfoProps) => {
               <div className="flex gap-1 items-center pt-3 text-plt-white">
                 <IconSunUv />
                 <span className="text-3xl text-plt-white">
-                  {Math.round(currentWeather?.main?.temp_max)}&#176;C
+                  {Math.round(currentWeather?.main?.temp_max)}
+                  <span className="opacity-60 pb-0.5 pl-1 text-plt-white text-sm">
+                    &#176;{currentUnit.unit === 'metric' && 'C'}
+                    {currentUnit.unit === 'imperial' && 'F'}
+                    {currentUnit.unit === 'standart' && 'K'}
+                  </span>
                 </span>
               </div>
             </div>
@@ -107,7 +115,12 @@ export const WeatherMoreInfo = ({ currentWeather }: WeatherMoreInfoProps) => {
               <div className="flex gap-1 items-center pt-3 text-plt-white">
                 <IconThermometer />
                 <span className="text-3xl text-plt-white">
-                  {Math.round(currentWeather?.main?.feels_like)}&#176;C
+                  {Math.round(currentWeather?.main?.feels_like)}
+                  <span className="opacity-60 pb-0.5 pl-1 text-plt-white text-sm">
+                    &#176;{currentUnit.unit === 'metric' && 'C'}
+                    {currentUnit.unit === 'imperial' && 'F'}
+                    {currentUnit.unit === 'standart' && 'K'}
+                  </span>
                 </span>
               </div>
             </div>

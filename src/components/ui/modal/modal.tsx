@@ -1,6 +1,6 @@
 'use client';
 
-import { addCity } from '@/lib/store/slices/citiesSlice';
+import { addCity } from '@/lib/store/slices/cities-slice';
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';

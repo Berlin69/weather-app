@@ -5,8 +5,8 @@ import { ButtonMenu } from '@/components/primitives/menu-button';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 
-import { addCity, deleteCity, setCities } from '@/lib/store/slices/citiesSlice';
-import { changeCity } from '@/lib/store/slices/citySlise';
+import { deleteCity, setCities } from '@/lib/store/slices/cities-slice';
+import { changeCity } from '@/lib/store/slices/city-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { CityItem } from '../city-item';
 import { SearchModal } from '../search-modal';
@@ -19,6 +19,7 @@ const MyPlaces = () => {
 
   const dispatch = useDispatch();
 
+  // Инициализация хранилища
   useEffect(() => {
     if (isInitializeLoading) {
       if (localStorage.getItem('cities')) {
@@ -36,25 +37,20 @@ const MyPlaces = () => {
     }
   }, [cities]);
 
+  // удаление города
   const handleRemoveCity = (cityName: string) => {
     dispatch(deleteCity(cityName));
   };
 
+  // закрытие модального окна
   const handleCloseClick = () => {
     setModalOpen(false);
   };
 
+  // изменение города
   const handleChangeCity = (city: CityItem) => {
     dispatch(changeCity(city));
   };
-
-  // useEffect(() => {
-  //   const citiesArray = localStorage.getItem('cities');
-  //   if (citiesArray) {
-  //     const parsedCitiesArray = JSON.parse(citiesArray);
-  //   }
-  //   localStorage.setItem('cities', JSON.stringify(cities));
-  // }, [cities]);
 
   return (
     <div className={cn('relative px-5')}>

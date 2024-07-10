@@ -4,6 +4,7 @@ import { ButtonMenu } from '@/components/primitives/menu-button';
 import React from 'react';
 import MyPlaces from '../my-places/my-places';
 import { CurrentLocation } from '../current-location';
+import { UnitsSelect } from '@/components/units-select';
 
 export const Menu = () => {
   return (
@@ -15,6 +16,7 @@ export const Menu = () => {
         <div className="mt-10 grid gap-5">
           <MyPlaces />
           <CurrentLocation />
+          <UnitsSelect />
         </div>
       </div>
     </div>
