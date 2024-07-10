@@ -21,13 +21,15 @@ const MyPlaces = () => {
 
   useEffect(() => {
     if (isInitializeLoading) {
-      if (localStorage.getItem('cities')!.length > 0) {
+      if (localStorage.getItem('cities')) {
         const citiesArray = localStorage.getItem('cities');
         if (citiesArray) {
           const parsedCitiesArray = JSON.parse(citiesArray);
           dispatch(setCities(parsedCitiesArray));
           setInitializeLoading(false);
         }
+      } else {
+        localStorage.setItem('cities', JSON.stringify(cities));
       }
     } else {
       localStorage.setItem('cities', JSON.stringify(cities));
