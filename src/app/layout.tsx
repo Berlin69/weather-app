@@ -6,8 +6,13 @@ import StoreProvider from '@/lib/store/store-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Next Weather App',
-  description: 'Created by Maksim Opriatin',
+  title: 'Weather App with Next.JS',
+  description: 'Developed by Maksim Opriatin',
+  openGraph: {
+    title: 'Weather App with Next.JS',
+    description: 'Developed by Maksim Opriatin',
+    images: ['/images/png/weather-app-preview.png'],
+  },
 };
 
 export default function RootLayout({
