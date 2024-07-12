@@ -1,17 +1,15 @@
 import axios from 'axios';
-import { appid } from './constants';
 
-export const getCity = (
+export const getCity = async (
   searchValue: string,
   cb: (response: any) => void,
   loading: (boolean: boolean) => void
 ) => {
   axios
-    .get('https://api.openweathermap.org/geo/1.0/direct', {
+    .get('/api/city', {
       params: {
         q: searchValue,
         limit: 5,
-        appid: appid,
       },
     })
     .then((response) => cb(response.data))

@@ -14,7 +14,6 @@ export const CurrentLocation = () => {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(({ coords }) => {
           const { latitude, longitude } = coords;
-          // setLocation({ latitude, longitude });
           const newCity = {
             name: '',
             lat: latitude,

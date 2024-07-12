@@ -9,7 +9,8 @@ import { Menu } from '../menu';
 import { CurrentWeatherItem, WeatherInfo } from '../weather-info';
 import { WeatherMoreInfo } from '../weather-more-info';
 import { changeCity } from '@/lib/store/slices/city-slice';
-import { appid, routes } from '@/lib/api/constants';
+
+export async function getWeather() {}
 
 export const WeatherApp = () => {
   const selectedCity = useSelector((state: any) => state.city);
@@ -49,13 +50,11 @@ export const WeatherApp = () => {
     async function getCurrentWeather(lat: string, lon: string) {
       if (!isInitializeLoading) {
         try {
-          const weather = await axios.get(routes.weather, {
+          const weather = await axios.get(`/api/weather`, {
             params: {
-              appid: appid,
               lat: lat,
               lon: lon,
               units: currentUnit.unit,
-              lang: 'ru',
             },
           });
           setCurrentWeather(weather.data);
@@ -72,13 +71,11 @@ export const WeatherApp = () => {
     setForecastLoading(true);
     async function getCurrentForecast(lat: string, lon: string) {
       try {
-        const forecast = await axios.get(routes.forecast, {
+        const forecast = await axios.get(`/api/forecast`, {
           params: {
-            appid,
             lat,
             lon,
             units: currentUnit.unit,
-            lang: 'ru',
           },
         });
         setCurrentForecast(forecast.data);
